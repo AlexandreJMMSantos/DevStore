@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="cart-container">
+    <button class="cart-button" (click)="confirm()">Confirmar</button>
+    <button class="cart-button" (click)="showCartSummary()">🛒 Ver Carrinho ({{ cart.length }})</button>
+  </div>
+
+  <div *ngIf="showCart" class="cart-summary">
+    <h3>Resumo do Carrinho</h3>
+    <ul>
+      <li *ngFor="let item of cart">
+        {{ item.title }} - {{ item.quantity }}x -
+        <strong>R$ {{ (item.price * item.quantity!) | number:'1.2-2' }}</strong>
+      </li>
+    </ul>
+    <p><strong>Total:</strong> R$ {{ getCartTotal() | number:'1.2-2' }}</p>
+  </div>
+
+  <div class="products-list">
+    <div *ngFor="let product of products" class="product-card">
+      <div class="product-details">
+        <h2>&nbsp;{{ product.title }}</h2>
+        <span class="margin-text"><strong>Categoria:</strong> {{ product.category }}</span><br />
+        <span class="margin-text"><strong>Descrição:</strong> {{ product.description }}</span><br />
+        <span class="margin-text"><strong>Preço:</strong> R$ {{ product.price | number:'1.2-2' }}</span><br />
+        <span class="margin-text"><strong>Avaliação:</strong> {{ product.rating.rate }} ({{ product.rating.count }} avaliações)</span>
+        <div class="quantity-controls">
+          &nbsp;
+          <button (click)="decreaseQuantity(product)">-</button>
+          <span>{{ product.quantity }}</span>
+          <button (click)="increaseQuantity(product)">+</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

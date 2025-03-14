@@ -1,0 +1,12 @@
+<div class="login-container">
+  <h2>Login</h2>
+
+  <div class="form-group">
+    <label for="email">E-mail</label>
+    <input id="email" type="email" [(ngModel)]="email" placeholder="Digite seu e-mail" required>
+  </div>
+
+  <button (click)="login()">Entrar</button>
+
+  <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+</div>
